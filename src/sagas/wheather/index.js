@@ -3,7 +3,7 @@ import { SEARCHING_REQUEST, actions as weatherActions } from '../../reducers/whe
 export async function fetchApi(city, index) {
     var fiveDate = new Date(new Date().getTime() - ((index - 1) * 24 * 60 * 60 * 1000)).toISOString().slice(0, 10);
     var todayDate = new Date(new Date().getTime() - (index * 24 * 60 * 60 * 1000)).toISOString().slice(0, 10);
-    const response = await fetch(`https://api.weatherbit.io/v2.0/history/daily?city=${city}&start_date=${todayDate}&end_date=${fiveDate}&key=3e9ef7ff2bb24c3ca5aaa8376e4347d2`)
+    const response = await fetch(`https://api.weatherbit.io/v2.0/history/daily?city=${city? city: 'london'}&start_date=${todayDate}&end_date=${fiveDate}&key=3e9ef7ff2bb24c3ca5aaa8376e4347d2`)
     return await response.json()
 }
 export function* searchingWoeid({ payload: { txt } }) {
